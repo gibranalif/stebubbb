@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ulang Tahun cewe aku</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <audio id="bg-music" autoplay loop muted>
+      <source src="HAIII.mp3" type="audio/mpeg" />
+      Browser kamu tidak mendukung audio.
+    </audio>
+    <!-- Layar konfirmasi sebelum masuk -->
+<!-- Pop-up Konfirmasi Musik -->
+<div id="music-confirm" class="popup-overlay">
+    <div class="popup-box">
+      <h2>🎵 Nyalakan musik biar makin cantik?</h2>
+      <p>aku sudah memilih musik untuk menemani menyambut ulang tahun ayang</p>
+      <div class="popup-buttons">
+        <button onclick="startWithMusic()" class="yes-btn">Ya, putar musik 🎶</button>
+        <button onclick="startWithoutMusic()" class="no-btn">ga dulu</button>
+      </div>
+    </div>
+  </div>  
+  </div>    
+    <img src="bunga-jatuh.gif" alt="Bunga Jatuh" class="bunga-jatuh" />
+    <main class="container">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">HITUNG MUNDUR CEWE AKU MAKIN TUAA IIII</h2>
+          <div class="img">
+            <img src="Picsart_25-04-23_00-54-57-042.png" alt="" />
+          </div>
+
+          <div id="countdown-wrapper">
+            <div class="time-section">
+              <div id="days" class="value">00</div>
+              <div class="time-label">hari</div>
+            </div>
+
+            <div class="time-section">
+              <div id="hours" class="value">00</div>
+              <div class="time-label">jam</div>
+            </div>
+
+            <div class="time-section">
+              <div id="minutes" class="value">00</div>
+              <div class="time-label">menit</div>
+            </div>
+
+            <div class="time-section">
+              <div id="seconds" class="value">00</div>
+              <div class="time-label">detik</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol hadiah -->
+        <a
+          href="https://drive.google.com/drive/folders/1AzqXIzaAiMXGeAXyiRCw5my4jIME74w7?usp=sharing"
+          target="_blank"
+          id="gift-button"
+          class="gift-button"
+          style="pointer-events: none; opacity: 0.5"
+        >
+          🎁 Pencettt disini nantiii!
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+        <p>Dibuat dengan 💙 oleh cowo kamu [J]</p>
+      </footer>
+      
+    <script>
+      const targetDate = new Date("April 25, 2025 00:0:00").getTime();
+
+      const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = String(days).padStart(
+          2,
+          "0"
+        );
+        document.getElementById("hours").innerText = String(hours).padStart(
+          2,
+          "0"
+        );
+        document.getElementById("minutes").innerText = String(minutes).padStart(
+          2,
+          "0"
+        );
+        document.getElementById("seconds").innerText = String(seconds).padStart(
+          2,
+          "0"
+        );
+
+        if (distance < 0) {
+          clearInterval(countdown);
+
+          // Sembunyikan countdown
+          document.getElementById("countdown-wrapper").style.display = "none";
+
+          // Ucapan
+          document.querySelector(".card-title").innerText =
+            "Selamat ulang tahun sayangggnya akuu💙💙💙";
+
+          // Aktifkan tombol hadiah
+          const giftBtn = document.getElementById("gift-button");
+          giftBtn.style.pointerEvents = "auto";
+          giftBtn.style.opacity = "1";
+        }
+      }, 1000);
+      function startWithMusic() {
+  const bgMusic = document.getElementById("bg-music");
+  bgMusic.muted = false;
+  bgMusic.play();
+  document.getElementById("music-confirm").style.display = "none";
+}
+
+function startWithoutMusic() {
+  document.getElementById("music-confirm").style.display = "none";
+}
+
+    </script>
+  </body>
+</html>
